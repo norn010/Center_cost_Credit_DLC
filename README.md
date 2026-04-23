@@ -1,6 +1,6 @@
 # Spare Credit Data Management System (CRUD)
 
-โปรเจคจัดการข้อมูลสำหรับ Database `Spare_Credit` แบ่งเป็น 2 ส่วน คือ Frontend (React Vite) และ Backend (Node.js Express)
+โปรเจคจัดการข้อมูลสำหรับ Database `Center_cost_Credit` แบ่งเป็น 2 ส่วน คือ Frontend (React Vite) และ Backend (Node.js Express)
 
 ## โครงสร้างโปรเจค
 
@@ -16,7 +16,7 @@
 ตรงส่วนที่มี `user:` และ `password:` ให้เปลี่ยนเป็นของคุณ (เช่น `sa` และรหัสผ่าน)
 
 1.สร้างตาราง
-📁 `สร้างตารางSpare_Credit_DLC.txt`
+📁 `สร้างตารางCenter_cost_Credit.txt`
 2.เพิ่มข้อมูลในตาราง
 📁 `เพิ่มข้อมูลในตารางCom ex.txt`
 3.เพิ่มข้อมูลในตาราง
