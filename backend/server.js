@@ -45,14 +45,13 @@ app.post('/api/brand-acc', async (req, res) => {
 });
 
 // PUT (Update)
-app.put('/api/brand-acc/:brand/:branch', async (req, res) => {
+app.put('/api/brand-acc/:id', async (req, res) => {
     try {
-        const { brand, branch } = req.params;
+        const { id } = req.params;
         const { Brand, Branch, Shorts, Acc1, Acc2, Acc3, Acc4, Acc5, Acc6 } = req.body;
         const pool = await poolPromise;
         await pool.request()
-            .input('oldBrand', sql.NVarChar, brand)
-            .input('oldBranch', sql.NVarChar, branch)
+            .input('ID', sql.Int, id)
             .input('Brand', sql.NVarChar, Brand)
             .input('Branch', sql.NVarChar, Branch)
             .input('Shorts', sql.NVarChar, Shorts)
@@ -64,7 +63,7 @@ app.put('/api/brand-acc/:brand/:branch', async (req, res) => {
             .input('Acc6', sql.NVarChar, Acc6)
             .query(`UPDATE Brand_Acc_Tb 
                     SET Brand=@Brand, Branch=@Branch, Shorts=@Shorts, Acc1=@Acc1, Acc2=@Acc2, Acc3=@Acc3, Acc4=@Acc4, Acc5=@Acc5, Acc6=@Acc6
-                    WHERE Brand=@oldBrand AND Branch=@oldBranch`);
+                    WHERE ID=@ID`);
         res.json({ message: 'Updated successfully' });
     } catch (err) {
         res.status(500).send(err.message);
@@ -72,14 +71,13 @@ app.put('/api/brand-acc/:brand/:branch', async (req, res) => {
 });
 
 // DELETE
-app.delete('/api/brand-acc/:brand/:branch', async (req, res) => {
+app.delete('/api/brand-acc/:id', async (req, res) => {
     try {
-        const { brand, branch } = req.params;
+        const { id } = req.params;
         const pool = await poolPromise;
         await pool.request()
-            .input('Brand', sql.NVarChar, brand)
-            .input('Branch', sql.NVarChar, branch)
-            .query(`DELETE FROM Brand_Acc_Tb WHERE Brand=@Brand AND Branch=@Branch`);
+            .input('ID', sql.Int, id)
+            .query(`DELETE FROM Brand_Acc_Tb WHERE ID=@ID`);
         res.json({ message: 'Deleted successfully' });
     } catch (err) {
         res.status(500).send(err.message);
@@ -122,14 +120,13 @@ app.post('/api/com-ex', async (req, res) => {
 });
 
 // PUT (Update)
-app.put('/api/com-ex/:brand/:branch', async (req, res) => {
+app.put('/api/com-ex/:id', async (req, res) => {
     try {
-        const { brand, branch } = req.params;
+        const { id } = req.params;
         const { Brand, Branch, LoneCode, ExpressCode, Cusname } = req.body;
         const pool = await poolPromise;
         await pool.request()
-            .input('oldBrand', sql.NVarChar, brand)
-            .input('oldBranch', sql.NVarChar, branch)
+            .input('ID', sql.Int, id)
             .input('Brand', sql.NVarChar, Brand)
             .input('Branch', sql.NVarChar, Branch)
             .input('LoneCode', sql.NVarChar, LoneCode)
@@ -137,7 +134,7 @@ app.put('/api/com-ex/:brand/:branch', async (req, res) => {
             .input('Cusname', sql.NVarChar, Cusname)
             .query(`UPDATE Com_Ex_Tb 
                     SET Brand=@Brand, Branch=@Branch, LoneCode=@LoneCode, ExpressCode=@ExpressCode, Cusname=@Cusname
-                    WHERE Brand=@oldBrand AND Branch=@oldBranch`);
+                    WHERE ID=@ID`);
         res.json({ message: 'Updated successfully' });
     } catch (err) {
         res.status(500).send(err.message);
@@ -145,14 +142,13 @@ app.put('/api/com-ex/:brand/:branch', async (req, res) => {
 });
 
 // DELETE
-app.delete('/api/com-ex/:brand/:branch', async (req, res) => {
+app.delete('/api/com-ex/:id', async (req, res) => {
     try {
-        const { brand, branch } = req.params;
+        const { id } = req.params;
         const pool = await poolPromise;
         await pool.request()
-            .input('Brand', sql.NVarChar, brand)
-            .input('Branch', sql.NVarChar, branch)
-            .query(`DELETE FROM Com_Ex_Tb WHERE Brand=@Brand AND Branch=@Branch`);
+            .input('ID', sql.Int, id)
+            .query(`DELETE FROM Com_Ex_Tb WHERE ID=@ID`);
         res.json({ message: 'Deleted successfully' });
     } catch (err) {
         res.status(500).send(err.message);

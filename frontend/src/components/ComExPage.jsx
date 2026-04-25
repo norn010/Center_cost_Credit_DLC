@@ -59,13 +59,13 @@ export default function ComExPage() {
 
   const handleEditClick = (index, item) => {
     setEditIndex(index);
-    setEditData({ ...item, oldBrand: item.Brand, oldBranch: item.Branch });
+    setEditData({ ...item, oldId: item.ID });
   };
 
   const handleSaveEdit = async () => {
     try {
-      const { oldBrand, oldBranch, ...updateData } = editData;
-      await axios.put(`${API_URL}/${oldBrand}/${oldBranch}`, updateData);
+      const { oldId, ...updateData } = editData;
+      await axios.put(`${API_URL}/${oldId}`, updateData);
       setEditIndex(-1);
       fetchData();
     } catch (err) {
@@ -74,10 +74,10 @@ export default function ComExPage() {
     }
   };
 
-  const handleDelete = async (brand, branch) => {
+  const handleDelete = async (id) => {
     if (window.confirm('คุณต้องการลบข้อมูลนี้ใช่หรือไม่?')) {
       try {
-        await axios.delete(`${API_URL}/${brand}/${branch}`);
+        await axios.delete(`${API_URL}/${id}`);
         fetchData();
       } catch (err) {
         console.error(err);
@@ -198,7 +198,7 @@ export default function ComExPage() {
 
             {/* DATA ROWS */}
             {filteredAndSortedData.map((item, idx) => {
-              const originalIndex = data.findIndex(d => d.Brand === item.Brand && d.Branch === item.Branch);
+              const originalIndex = data.indexOf(item);
               const isEditing = editIndex === originalIndex;
               
               return (
@@ -231,7 +231,7 @@ export default function ComExPage() {
                       ) : (
                         <>
                           <button onClick={() => handleEditClick(originalIndex, item)} className="p-1.5 text-indigo-600 hover:bg-indigo-50 rounded-md transition-colors"><Edit2 size={16} /></button>
-                          <button onClick={() => handleDelete(item.Brand, item.Branch)} className="p-1.5 text-red-600 hover:bg-red-50 rounded-md transition-colors"><Trash2 size={16} /></button>
+                          <button onClick={() => handleDelete(item.ID)} className="p-1.5 text-red-600 hover:bg-red-50 rounded-md transition-colors"><Trash2 size={16} /></button>
                         </>
                       )}
                     </div>
